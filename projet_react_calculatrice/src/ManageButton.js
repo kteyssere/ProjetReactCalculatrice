@@ -4,11 +4,19 @@ import React from "react";
 
 class ManageButton extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(){
+        this.props.onBtnTouched(this.props.manage);
+    }
+
     render() {
         return(
-            <div className="OtherButton">
-                <button name="=" onClick={this.calculate}>=</button>
-                <button onClick={this.addnum}>Suppr</button>
+            <div className="ManageButton">
+                <button value={this.props.manage} onClick={this.handleChange}>{this.props.manage}</button>
             </div>
         );
     }
