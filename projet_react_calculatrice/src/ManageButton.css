@@ -1,4 +1,5 @@
-.ManageButton {
-    background-color: white;
-    display: inline-block;
+.ManageButton > button{
+    background-color: #4d90fe;
+    border: none;
+    width: 80px;
 }

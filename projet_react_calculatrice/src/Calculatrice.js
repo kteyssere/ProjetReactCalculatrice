@@ -8,11 +8,12 @@ import Display from "./Display";
 
 class Calculatrice extends React.Component {
 
+    //Constructeur de la calculatrice créant les différents états
     constructor(props) {
         super(props);
-        this.initBtn = this.initBtn.bind(this);
-        this.initOperator = this.initOperator.bind(this);
-        this.initManager = this.initManager.bind(this);
+        this.setNumber = this.setNumber.bind(this);
+        this.setOperator = this.setOperator.bind(this);
+        this.setManager = this.setManager.bind(this);
 
         this.state = {
             number:'',
@@ -21,91 +22,75 @@ class Calculatrice extends React.Component {
             operator:'',
             manage:'',
             result:''
-
         };
     }
 
-    initBtn(number){
+    //Ajoute un nombre/chiffre à l'état number
+    setNumber(number){
         if (this.state.operator === '') {
             const previousNumber = this.state.number;
             const newNumber = previousNumber + number;
             this.setState({number: newNumber});
-            console.log('newNumber : ' + newNumber);
         }else{
             const previousNumber2 = this.state.number2;
             const newNumber2 = previousNumber2 + number;
             this.setState({number2: newNumber2});
-            console.log('newNumber2 : '+newNumber2);
         }
-
     }
 
-
-    initOperator(operator){
-        console.log(operator);
+    //Ajoute un opérateur à l'état operator
+    setOperator(operator){
         this.setState({operator:operator});
     }
 
-    initManager(manage) {
-        console.log(manage);
-        if (manage === 'Suppr') {
+    //Met à vide les états lorsque le bouton cliqué renvoie C
+    //Calcule en fonction de l'état operator retourné, le résultat de l'opération correspondante
+    setManager(manage) {
+        if (manage === 'C') {
             this.setState({number: '', number2: '', display: '', operator: '', manage: '', result: ''});
         }
-
-
-        console.log(this.state.operator)
         if (manage === '=') {
             this.setState({manage:'='});
-
             let res = 0;
             switch (this.state.operator) {
-
                 case '+':
                     res = parseFloat(this.state.number) + parseFloat(this.state.number2);
                     this.setState({result: res});
-                    console.log(res);
-                    console.log(this.state.result);
+                    this.setState({number: res});
+                    this.setState({number2: null});
                     break;
                 case '-':
                     res = parseFloat(this.state.number) - parseFloat(this.state.number2);
                     this.setState({result: res});
-                    console.log(res);
-                    console.log(this.state.result);
+                    this.setState({number: res});
+                    this.setState({number2: null});
                     break;
                 case 'x':
                     res = parseFloat(this.state.number) * parseFloat(this.state.number2);
                     this.setState({result: res});
-                    console.log(res);
-                    console.log(this.state.result);
+                    this.setState({number: res});
+                    this.setState({number2: null});
                     break;
                 case '÷':
                     if(this.state.number2!=='0'){
                         res = parseFloat(this.state.number) / parseFloat(this.state.number2);
                         this.setState({result: res});
-                        console.log(res);
-                        console.log(this.state.result);
+                        this.setState({number: res});
+                        this.setState({number2: null});
                     }else{
-
                         this.setState({result: 'Erreur'});
+                        this.setState({number: 'Erreur'});
                     }
                     break;
                 default:
-
             }
         }
     }
 
-    initDisplay(){
-        console.log(this.props.number);
-        console.log(this.props.display);
-        //this.setState({display:this.props.number});
-        //return this.state.display;
-    }
-
-
     render() {
         return(
             <div className="Calculatrice">
+
                 <Display
                     number={this.state.number}
                     number2={this.state.number2}
@@ -114,77 +99,81 @@ class Calculatrice extends React.Component {
                     manage={this.state.manage}
                     />
 
-                <br/>
+                <OperatorButton
+                    operator={'+'}
+                    onBtnTouched={this.setOperator}
+                />
+                <OperatorButton
+                    operator={'-'}
+                    onBtnTouched={this.setOperator}
+                />
+                <OperatorButton
+                    operator={'x'}
+                    onBtnTouched={this.setOperator}
+                />
+                <OperatorButton
+                    operator={'÷'}
+                    onBtnTouched={this.setOperator}
+                />
 
                 <NumberButton
-                    number={1}
-                    onBtnTouched={this.initBtn}/>
+                    number={7}
+                    onBtnTouched={this.setNumber}/>
                 <NumberButton
-                    number={2}
-                    onBtnTouched={this.initBtn}/>
+                    number={8}
+                    onBtnTouched={this.setNumber}/>
                 <NumberButton
-                    number={3}
-                    onBtnTouched={this.initBtn}/>
+                    number={9}
+                    onBtnTouched={this.setNumber}/>
+
+                <div className="equal">
+                    <ManageButton
+                        manage={'='}
+                        onBtnTouched={this.setManager}
+                    />
+                </div>
 
                 <br/>
 
                 <NumberButton
                     number={4}
-                    onBtnTouched={this.initBtn}/>
+                    onBtnTouched={this.setNumber}/>
                 <NumberButton
                     number={5}
-                    onBtnTouched={this.initBtn}/>
+                    onBtnTouched={this.setNumber}/>
                 <NumberButton
                     number={6}
-                    onBtnTouched={this.initBtn}/>
+                    onBtnTouched={this.setNumber}/>
+
+                <div className="suppr">
+                    <ManageButton
+                        manage={'C'}
+                        onBtnTouched={this.setManager}
+                    />
+                </div>
 
                 <br/>
 
                 <NumberButton
-                    number={7}
-                    onBtnTouched={this.initBtn}/>
+                    number={1}
+                    onBtnTouched={this.setNumber}/>
                 <NumberButton
-                    number={8}
-                    onBtnTouched={this.initBtn}/>
+                    number={2}
+                    onBtnTouched={this.setNumber}/>
                 <NumberButton
-                    number={9}
-                    onBtnTouched={this.initBtn}/>
+                    number={3}
+                    onBtnTouched={this.setNumber}/>
 
                 <br/>
 
                 <NumberButton
                     number={0}
-                    onBtnTouched={this.initBtn}/>
+                    onBtnTouched={this.setNumber}/>
 
-                <br/>
+                <NumberButton
+                    number={'.'}
+                    onBtnTouched={this.setNumber}/>
 
-                <OperatorButton
-                    operator={'+'}
-                    onBtnTouched={this.initOperator}
-                />
-                <OperatorButton
-                    operator={'-'}
-                    onBtnTouched={this.initOperator}
-                />
-                <OperatorButton
-                    operator={'x'}
-                    onBtnTouched={this.initOperator}
-                />
-                <OperatorButton
-                    operator={'÷'}
-                    onBtnTouched={this.initOperator}
-                />
-
-                <br/>
-
-                <ManageButton
-                    manage={'='}
-                    onBtnTouched={this.initManager}
-                />
-                <ManageButton
-                    manage={'Suppr'}
-                    onBtnTouched={this.initManager}
-                />
             </div>
         );
     }

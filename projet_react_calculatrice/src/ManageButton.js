@@ -20,7 +20,6 @@ class ManageButton extends React.Component {
             </div>
         );
     }
-
 }
 
 export default ManageButton;

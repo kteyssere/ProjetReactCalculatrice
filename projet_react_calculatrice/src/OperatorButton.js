@@ -9,7 +9,6 @@ class OperatorButton extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-
     handleChange(){
         this.props.onBtnTouched(this.props.operator);
     }
@@ -21,7 +20,6 @@ class OperatorButton extends React.Component {
             </div>
         );
     }
-
 }
 
 export default OperatorButton;
