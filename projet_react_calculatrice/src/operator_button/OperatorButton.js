@@ -6,17 +6,17 @@ class OperatorButton extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleChange(){
+    handleClick(){
         this.props.onBtnTouched(this.props.operator);
     }
 
     render() {
         return(
             <div className="OperatorButton">
-                <button value={this.props.operator} onClick={this.handleChange}>{this.props.operator}</button>
+                <button value={this.props.operator} onClick={this.handleClick}>{this.props.operator}</button>
             </div>
         );
     }

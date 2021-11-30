@@ -1,7 +1,7 @@
 
 import './App.css';
 import React from "react";
-import Calculatrice from "./Calculatrice";
+import Calculatrice from "./calculatrice/Calculatrice";
 
 class App extends React.Component {
 

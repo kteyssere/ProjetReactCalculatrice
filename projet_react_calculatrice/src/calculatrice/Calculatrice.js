@@ -1,10 +1,11 @@
 
-import './Calculatrice.css';
+import "./Calculatrice.css"
 import React from "react";
-import NumberButton from "./NumberButton";
-import OperatorButton from "./OperatorButton";
-import ManageButton from "./ManageButton";
-import Display from "./Display";
+import NumberButton from "../number_button/NumberButton";
+import OperatorButton from "../operator_button/OperatorButton";
+import ManageButton from "../manage_button/ManageButton";
+import Display from "../display/Display";
+import History from "../history/History";
 
 class Calculatrice extends React.Component {
 
@@ -21,7 +22,16 @@ class Calculatrice extends React.Component {
             display:'',
             operator:'',
             manage:'',
-            result:''
+            result:'',
+            history:[{
+                //operation: [{
+                    number:'',
+                    operator:'',
+                    number2:'',
+                    manage:'',
+                    result:'',
+               // }]
+            }]
         };
     }
 
@@ -31,6 +41,7 @@ class Calculatrice extends React.Component {
             const previousNumber = this.state.number;
             const newNumber = previousNumber + number;
             this.setState({number: newNumber});
+            this.setState({history: newNumber});
         }else{
             const previousNumber2 = this.state.number2;
             const newNumber2 = previousNumber2 + number;
@@ -57,6 +68,16 @@ class Calculatrice extends React.Component {
                     res = parseFloat(this.state.number) + parseFloat(this.state.number2);
                     this.setState({result: res});
                     this.setState({number: res});
+                    //Sauvegarde dans l'histoirque
+                    // this.setState({history: [{
+                    //         number:this.state.number,
+                    //         operator:this.state.operator,
+                    //         number2:this.state.number2,
+                    //         manage:this.state.manage,
+                    //         result:this.state.result,
+                    //     }]
+                    // });
+                    // console.log(this.state.history);
                     this.setState({number2: null});
                     break;
                 case '-':
@@ -80,6 +101,7 @@ class Calculatrice extends React.Component {
                     }else{
                         this.setState({result: 'Erreur'});
                         this.setState({number: 'Erreur'});
+                        this.setState({number2: 'Erreur'});
                     }
                     break;
                 default:
@@ -174,7 +196,16 @@ class Calculatrice extends React.Component {
                     number={'.'}
                     onBtnTouched={this.setNumber}/>
 
+                <History
+                    number={this.state.number}
+                    number2={this.state.number2}
+                    operator={this.state.operator}
+                    result={this.state.result}
+                    manage={this.state.manage}
+                />
+
             </div>
+
         );
     }
 }

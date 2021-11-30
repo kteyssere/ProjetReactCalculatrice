@@ -6,17 +6,18 @@ class ManageButton extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleChange(){
+    //
+    handleClick(){
         this.props.onBtnTouched(this.props.manage);
     }
 
     render() {
         return(
             <div className="ManageButton">
-                <button value={this.props.manage} onClick={this.handleChange}>{this.props.manage}</button>
+                <button value={this.props.manage} onClick={this.handleClick}>{this.props.manage}</button>
             </div>
         );
     }
