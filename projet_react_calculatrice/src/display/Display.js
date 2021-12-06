@@ -9,6 +9,8 @@ class Display extends React.Component {
         return(
             <div className="Display">
                 {this.props.number}
+                {this.props.operator}
+                {this.props.number2}
             </div>
         );
     }

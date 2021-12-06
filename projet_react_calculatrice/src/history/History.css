@@ -1,0 +1,9 @@
+div > ol {
+    padding-left: 50pt;
+
+}
+
+div > p, div > ol > li{
+    font-size: 20px;
+    letter-spacing: 2px;
+}

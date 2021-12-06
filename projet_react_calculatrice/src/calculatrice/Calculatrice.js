@@ -19,19 +19,10 @@ class Calculatrice extends React.Component {
         this.state = {
             number:'',
             number2:'',
-            display:'',
             operator:'',
             manage:'',
             result:'',
-            history:[{
-                //operation: [{
-                    number:'',
-                    operator:'',
-                    number2:'',
-                    manage:'',
-                    result:'',
-               // }]
-            }]
+            history:[]
         };
     }
 
@@ -41,7 +32,7 @@ class Calculatrice extends React.Component {
             const previousNumber = this.state.number;
             const newNumber = previousNumber + number;
             this.setState({number: newNumber});
-            this.setState({history: newNumber});
+            //this.setState({history: newNumber});
         }else{
             const previousNumber2 = this.state.number2;
             const newNumber2 = previousNumber2 + number;
@@ -57,55 +48,66 @@ class Calculatrice extends React.Component {
     //Met à vide les états lorsque le bouton cliqué renvoie C
     //Calcule en fonction de l'état operator retourné, le résultat de l'opération correspondante
     setManager(manage) {
+
         if (manage === 'C') {
-            this.setState({number: '', number2: '', display: '', operator: '', manage: '', result: ''});
+            this.setState({number: '', number2: '', operator: '', manage: '', result: ''});
         }
+
+        if (manage === 'CH') {
+            this.setState({history: []});
+        }
+
         if (manage === '=') {
-            this.setState({manage:'='});
             let res = 0;
+            let newState = {...this.state}
+            newState.manage = '=';
             switch (this.state.operator) {
                 case '+':
                     res = parseFloat(this.state.number) + parseFloat(this.state.number2);
-                    this.setState({result: res});
-                    this.setState({number: res});
-                    //Sauvegarde dans l'histoirque
-                    // this.setState({history: [{
-                    //         number:this.state.number,
-                    //         operator:this.state.operator,
-                    //         number2:this.state.number2,
-                    //         manage:this.state.manage,
-                    //         result:this.state.result,
-                    //     }]
-                    // });
-                    // console.log(this.state.history);
-                    this.setState({number2: null});
+                    newState.result = res;
+                    newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
+                    newState.number = res;
+                    newState.operator = '';
+                    newState.number2 = null;
                     break;
+
                 case '-':
                     res = parseFloat(this.state.number) - parseFloat(this.state.number2);
-                    this.setState({result: res});
-                    this.setState({number: res});
-                    this.setState({number2: null});
+                    newState.result = res;
+                    newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
+                    newState.number = res;
+                    newState.operator = '';
+                    newState.number2 = null;
                     break;
+
                 case 'x':
                     res = parseFloat(this.state.number) * parseFloat(this.state.number2);
-                    this.setState({result: res});
-                    this.setState({number: res});
-                    this.setState({number2: null});
+                    newState.result = res;
+                    newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
+                    newState.number = res;
+                    newState.operator = '';
+                    newState.number2 = null;
                     break;
+
                 case '÷':
                     if(this.state.number2!=='0'){
                         res = parseFloat(this.state.number) / parseFloat(this.state.number2);
-                        this.setState({result: res});
-                        this.setState({number: res});
-                        this.setState({number2: null});
+                        newState.result = res;
+                        newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
+                        newState.number = res;
+                        newState.operator = '';
+                        newState.number2 = null;
+
                     }else{
-                        this.setState({result: 'Erreur'});
-                        this.setState({number: 'Erreur'});
-                        this.setState({number2: 'Erreur'});
+                        res = 'Erreur'
+                        newState.result = res;
+                        newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
                     }
                     break;
                 default:
             }
+            this.setState(newState);
+            console.log(this.state.history);
         }
     }
 
@@ -186,6 +188,13 @@ class Calculatrice extends React.Component {
                     number={3}
                     onBtnTouched={this.setNumber}/>
 
+                <div className="clearhist">
+                    <ManageButton
+                        manage={'CH'}
+                        onBtnTouched={this.setManager}
+                    />
+                </div>
+
                 <br/>
 
                 <NumberButton
@@ -202,9 +211,13 @@ class Calculatrice extends React.Component {
                     operator={this.state.operator}
                     result={this.state.result}
                     manage={this.state.manage}
+                    list={this.state.history}
                 />
-
+                <br/>
+                <p>C : clear</p>
+                <p>CH : clear history</p>
             </div>
+
 
         );
     }

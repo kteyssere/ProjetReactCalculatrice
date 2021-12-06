@@ -38,3 +38,25 @@
     transition: all .2s ease-in-out;
 
 }
+
+.clearhist{
+    display: inline-block;
+    border: 1px solid #3079ED;
+    border-radius: 15px;
+    text-align: center;
+    padding: 10px 10px;
+    margin: 10px 4px 10px 0;
+    vertical-align: top;
+    cursor: pointer;
+    color: #FFF;
+    background-color: #4d90fe;
+    transition: all .2s ease-in-out;
+
+
+}
+
+.Calculatrice > p {
+    font-size: 15px;
+    letter-spacing: 2px;
+    line-height: 5px;
+}
