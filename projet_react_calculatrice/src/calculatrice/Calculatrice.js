@@ -6,7 +6,6 @@ import OperatorButton from "../operator_button/OperatorButton";
 import ManageButton from "../manage_button/ManageButton";
 import Display from "../display/Display";
 import History from "../history/History";
-//import logo from "../images/logo.png"
 import logo from "../images/signature.png"
 
 
@@ -75,14 +74,21 @@ class Calculatrice extends React.Component {
                     break;
 
                 case '-':
-                    console.log("num 1 : "+this.state.number);
-                    console.log("num 2 : "+this.state.number2);
-                    res = parseFloat(this.state.number) - parseFloat(this.state.number2);
-                    newState.result = res;
-                    newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
-                    newState.number = res;
-                    newState.operator = '';
-                    newState.number2 = null;
+                    if(this.state.number===''){
+                        res = -parseFloat(this.state.number2);
+                        newState.result = res;
+                        newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
+                        newState.number = res;
+                        newState.operator = '';
+                        newState.number2 = null;
+                    }else{
+                        res = parseFloat(this.state.number) - parseFloat(this.state.number2);
+                        newState.result = res;
+                        newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
+                        newState.number = res;
+                        newState.operator = '';
+                        newState.number2 = null;
+                    }
                     break;
 
                 case 'x':
@@ -109,11 +115,18 @@ class Calculatrice extends React.Component {
                         newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
                     }
                     break;
+
+                case '':
+                    res = parseFloat(this.state.number);
+                    newState.result = res;
+                    newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
+                    newState.number = res;
+                    newState.operator = '';
+                    newState.number2 = null;
+                    break;
                 default:
             }
             this.setState(newState);
-            console.log(this.state.history);
-            console.log(this.state.result);
         }
     }
 
@@ -228,7 +241,6 @@ class Calculatrice extends React.Component {
                 <p>C : clear</p>
                 <p>CH : clear history</p>
             </div>
-
 
         );
     }
