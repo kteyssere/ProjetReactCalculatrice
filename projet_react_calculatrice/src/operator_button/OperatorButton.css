@@ -1,6 +1,4 @@
-
 .OperatorButton{
-
     display: inline-block;
     border: 1px solid #bbb;
     border-radius: 15px;
@@ -8,12 +6,12 @@
     padding: 10px;
     margin: 20px 4px 10px 0;
     cursor: pointer;
-    background-color: #ddd;
+    background-color: lightseagreen;
     transition: border-color .2s ease-in-out, background-color .2s, box-shadow .2s;
 }
 
 .OperatorButton:hover{
-    background-color: #ddd;
+    background-color: lightseagreen;
     -webkit-box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
     border-color: #aaa;
@@ -24,7 +22,7 @@
 }
 
 .OperatorButton > button{
-    background-color: #ddd;
+    background-color: lightseagreen;
     border: none;
     width: 80px;
 }

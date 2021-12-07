@@ -1,6 +1,6 @@
 .Display{
     border: 1px solid #ddd;
-    border-radius: 1px;
+    border-radius: 15px;
     height: 60px;
     padding-right: 15px;
     padding-top: 10px;
@@ -9,13 +9,11 @@
     font-size: 1.5rem;
     overflow-x: auto;
     transition: all .2s ease-in-out;
-    background-color: #FFFFFF;
+    background-color: white;
 }
 
 .Display:hover{
-
     border: 1px solid #bbb;
     -webkit-box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
     box-shadow: inset 0px 1px 4px 0px rgba(0, 0, 0, 0.2);
-
 }

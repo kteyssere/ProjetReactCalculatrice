@@ -6,6 +6,9 @@ import OperatorButton from "../operator_button/OperatorButton";
 import ManageButton from "../manage_button/ManageButton";
 import Display from "../display/Display";
 import History from "../history/History";
+//import logo from "../images/logo.png"
+import logo from "../images/signature.png"
+
 
 class Calculatrice extends React.Component {
 
@@ -72,6 +75,8 @@ class Calculatrice extends React.Component {
                     break;
 
                 case '-':
+                    console.log("num 1 : "+this.state.number);
+                    console.log("num 2 : "+this.state.number2);
                     res = parseFloat(this.state.number) - parseFloat(this.state.number2);
                     newState.result = res;
                     newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
@@ -108,6 +113,7 @@ class Calculatrice extends React.Component {
             }
             this.setState(newState);
             console.log(this.state.history);
+            console.log(this.state.result);
         }
     }
 
@@ -188,7 +194,7 @@ class Calculatrice extends React.Component {
                     number={3}
                     onBtnTouched={this.setNumber}/>
 
-                <div className="clearhist">
+                <div className="clearlist">
                     <ManageButton
                         manage={'CH'}
                         onBtnTouched={this.setManager}
@@ -204,6 +210,11 @@ class Calculatrice extends React.Component {
                 <NumberButton
                     number={'.'}
                     onBtnTouched={this.setNumber}/>
+
+                {/*<p>By kt et br</p>*/}
+
+                <img src={logo}/>
+
 
                 <History
                     number={this.state.number}

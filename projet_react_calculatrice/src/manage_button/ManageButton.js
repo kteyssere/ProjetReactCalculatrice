@@ -1,9 +1,7 @@
-
 import './ManageButton.css';
 import React from "react";
 
 class ManageButton extends React.Component {
-
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
