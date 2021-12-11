@@ -70,7 +70,7 @@ class Calculatrice extends React.Component {
                     newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
                     newState.number = res;
                     newState.operator = '';
-                    newState.number2 = null;
+                    newState.number2 = '';
                     break;
 
                 case '-':
@@ -80,14 +80,14 @@ class Calculatrice extends React.Component {
                         newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
                         newState.number = res;
                         newState.operator = '';
-                        newState.number2 = null;
+                        newState.number2 = '';
                     }else{
                         res = parseFloat(this.state.number) - parseFloat(this.state.number2);
                         newState.result = res;
                         newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
                         newState.number = res;
                         newState.operator = '';
-                        newState.number2 = null;
+                        newState.number2 = '';
                     }
                     break;
 
@@ -97,7 +97,7 @@ class Calculatrice extends React.Component {
                     newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
                     newState.number = res;
                     newState.operator = '';
-                    newState.number2 = null;
+                    newState.number2 = '';
                     break;
 
                 case '÷':
@@ -107,7 +107,7 @@ class Calculatrice extends React.Component {
                         newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
                         newState.number = res;
                         newState.operator = '';
-                        newState.number2 = null;
+                        newState.number2 = '';
 
                     }else{
                         res = 'Erreur'
@@ -122,7 +122,7 @@ class Calculatrice extends React.Component {
                     newState.history.push([newState.number, newState.operator, newState.number2,newState.manage,newState.result]);
                     newState.number = res;
                     newState.operator = '';
-                    newState.number2 = null;
+                    newState.number2 = '';
                     break;
                 default:
             }
