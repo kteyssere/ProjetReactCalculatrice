@@ -6,8 +6,8 @@ import OperatorButton from "../operator_button/OperatorButton";
 import ManageButton from "../manage_button/ManageButton";
 import Display from "../display/Display";
 import History from "../history/History";
-import logo from "../images/signature.png"
-
+import signature from "../images/signature.png"
+import calculator from "../images/calculator.png"
 
 class Calculatrice extends React.Component {
 
@@ -28,7 +28,7 @@ class Calculatrice extends React.Component {
         };
     }
 
-    //Ajoute un nombre/chiffre à l'état number
+    //Ajoute un nombre/chiffre à l'état 'number'
     setNumber(number){
         if (this.state.operator === '') {
             const previousNumber = this.state.number;
@@ -42,13 +42,13 @@ class Calculatrice extends React.Component {
         }
     }
 
-    //Ajoute un opérateur à l'état operator
+    //Ajoute un opérateur à l'état 'operator'
     setOperator(operator){
         this.setState({operator:operator});
     }
 
-    //Met à vide les états lorsque le bouton cliqué renvoie C
-    //Calcule en fonction de l'état operator retourné, le résultat de l'opération correspondante
+    //Met à vide les états lorsque le bouton cliqué renvoie 'C'
+    //Calcul le résultat de l'opération en fonction de l'état 'operator' retourné
     setManager(manage) {
 
         if (manage === 'C') {
@@ -133,6 +133,11 @@ class Calculatrice extends React.Component {
     render() {
         return(
             <div className="Calculatrice">
+
+                <div>
+                    <img src={calculator}/>
+                </div>
+                <br/>
 
                 <Display
                     number={this.state.number}
@@ -224,10 +229,7 @@ class Calculatrice extends React.Component {
                     number={'.'}
                     onBtnTouched={this.setNumber}/>
 
-                {/*<p>By kt et br</p>*/}
-
-                <img src={logo}/>
-
+                <img src={signature}/>
 
                 <History
                     number={this.state.number}
@@ -241,7 +243,6 @@ class Calculatrice extends React.Component {
                 <p>C : clear</p>
                 <p>CH : clear history</p>
             </div>
-
         );
     }
 }

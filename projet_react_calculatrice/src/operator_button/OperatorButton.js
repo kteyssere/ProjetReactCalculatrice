@@ -1,4 +1,3 @@
-
 import './OperatorButton.css';
 import React from "react";
 
